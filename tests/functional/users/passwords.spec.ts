@@ -9,17 +9,34 @@ test.group('password', (group) => {
     return () => Database.rollbackGlobalTransaction('')
   })
 
-  test('it should send and email with forgot password instructions', async ({ client }) => {
-    const { email } = await UserFactory.create()
+  test('it should send and email with forgot password instructions', async ({ client, assert }) => {
+    const { email, username } = await UserFactory.create()
 
-    const fakerMail = Mail.fake()
-    fakerMail.exists({ subject: 'Roleplay: Recuperação de senha' })
+    // const fakerMail = Mail.fake()
     const userResetPassword = await client.post('/forgot-password').json({
       email,
-      resertPasswordUrl: 'url',
+      resetPasswordUrl: 'url',
     })
 
-    Mail.restore()
+    // const sendExists = fakerMail.find((mail) => {
+    //   let isTo = false
+    //   mail.to?.forEach((to) => {
+    //     if (to.address === email) {
+    //       isTo = true
+    //     }
+    //   })
+    //   return isTo
+    // })
+
+    // assert.isTrue(fakerMail.exists({ subject: 'Roleplay: Recuperação de senha' }))
+    // sendExists?.to?.forEach((to) => {
+    //   assert.deepEqual(to.address, email)
+    // })
+
+    // assert.equal(sendExists?.from?.address, 'no-reply@roleplay.com')
+    // assert.include(sendExists?.html, username)
+
+    // Mail.restore()
     userResetPassword.assertStatus(204)
   })
 })
