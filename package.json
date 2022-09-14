@@ -54,10 +54,12 @@
   },
   "dependencies": {
     "@adonisjs/core": "^5.8.0",
+    "@adonisjs/drive-gcs": "^1.1.1",
     "@adonisjs/lucid": "^10.0.0",
     "@adonisjs/mail": "^8.1.2",
     "@adonisjs/repl": "^3.1.0",
     "@adonisjs/view": "^6.1.6",
+    "@google-cloud/storage": "^6.4.1",
     "luxon": "^3.0.1",
     "pg": "^8.7.3",
     "phc-argon2": "^1.1.3",

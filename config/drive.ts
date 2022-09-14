@@ -43,7 +43,7 @@ export default driveConfig({
     local: {
       driver: 'local',
       visibility: 'public',
-
+      serveAssets: true,
       /*
       |--------------------------------------------------------------------------
       | Storage root - Local driver only
@@ -119,12 +119,13 @@ export default driveConfig({
     |**************************************************************************
     |
     */
-    // gcs: {
-    //   driver: 'gcs',
-    //   visibility: 'public',
-    //   keyFilename: Env.get('GCS_KEY_FILENAME'),
-    //   bucket: Env.get('GCS_BUCKET'),
-
+    gcs: {
+      driver: 'gcs',
+      visibility: 'private',
+      keyFilename: Env.get('GCS_KEY_FILENAME'),
+      bucket: Env.get('GCS_BUCKET'),
+      usingUniformAcl: false,
+    },
     /*
       |--------------------------------------------------------------------------
       | Uniform ACL - Google cloud storage only
